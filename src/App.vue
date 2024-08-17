@@ -24,9 +24,10 @@ async function handleDelete(email) {
   <el-button type="primary" @click="createUserDialogVisible = true">添加</el-button>
 
   <el-table :data="tableData" style="width: 100%">
-    <el-table-column prop="email" label="邮箱" width="180" />
+    <el-table-column prop="email" label="邮箱" width="300" />
     <el-table-column prop="deadline" label="到期时间" width="180" />
-    <el-table-column fixed="right" label="Operations" min-width="120">
+    <el-table-column prop="remark" label="备注" width="300" />
+    <el-table-column fixed="right" label="操作" min-width="120">
       <template #default="{ row }">
         <el-button link type="primary" size="small" @click="handleDelete(row.email)">
           删除
