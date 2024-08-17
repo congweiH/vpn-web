@@ -14,6 +14,10 @@ const createUserDialogVisible = ref(false);
 onMounted(async () => {
   tableData.value = await VpnApi.queryList();
 })
+
+async function handleDelete(email) {
+  await VpnApi.deleteUser(email);
+}
 </script>
 
 <template>
@@ -22,6 +26,13 @@ onMounted(async () => {
   <el-table :data="tableData" style="width: 100%">
     <el-table-column prop="email" label="邮箱" width="180" />
     <el-table-column prop="deadline" label="到期时间" width="180" />
+    <el-table-column fixed="right" label="Operations" min-width="120">
+      <template #default="{ row }">
+        <el-button link type="primary" size="small" @click="handleDelete(row.email)">
+          删除
+        </el-button>
+      </template>
+    </el-table-column>
   </el-table>
 
   <CreateUserDialog v-model="createUserDialogVisible" />

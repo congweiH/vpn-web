@@ -10,4 +10,8 @@ export class VpnApi {
     static async addUser({ email, deadline }) {
         return await Request.create(this.baseUrl, { email, deadline });
     }
+
+    static async deleteUser(email) {
+        await Request.delete(this.baseUrl, {email});
+    }
 }
